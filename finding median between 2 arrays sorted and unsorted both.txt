@@ -1,0 +1,126 @@
+a===>> for sorted array with a normal complexity 
+
+import java.util.*;
+
+class Solution {
+    public double findMedianSortedArrays(int[] nums1, int[] nums2) {
+        int n = nums1.length;
+        int m = nums2.length;
+        int nums3[] = new int[m+n];
+        int median = 0;
+        int i=0,j=0,k=0;
+          
+        while(i<n && j<m){
+            if(nums1[i]<nums2[j]){
+                nums3[k++] = nums1[i++];
+            }else{
+                nums3[k++] = nums2[j++];
+            }
+        }
+         while(i<n){
+            nums3[k++] = nums1[i++];
+        }
+        while(j<m){
+            nums3[k++] = nums2[j++];
+        }
+                System.out.println(Arrays.toString(nums3));
+        int totalL = m+n;
+        if(totalL % 2 != 0 ){
+            return nums3[totalL/2];
+        }else{
+            return (nums3[totalL/2 -1] + nums3[totalL/2]) / 2.0;
+        }
+    }
+     public static void main(String[] args){
+        // Create an instance of Solution
+        Solution solution = new Solution();
+
+        // Example arrays
+        int nums1[] = {1,2,3};
+        int nums2[] = {4,5,6};
+
+        // Call the method to find the median
+        double median = solution.findMedianSortedArrays(nums1, nums2);
+
+        // Print the median
+        System.out.println(median);
+    }
+}
+
+   
+
+
+b===>>>>>>>> for unsorted array:: with best complexcity 
+
+
+import java.util.*;
+
+class Solution {
+    public double findMedian(int[] nums1, int[] nums2) {
+        int m = nums1.length;
+        int n = nums2.length;
+        int temp[] = new int[m+n];
+
+        // Ensure that m <= n
+        if (m > n) {
+            int[] t = nums1;
+            nums1 = nums2;
+            nums2 = t;
+            int tmp = m;
+            m = n;
+            n = tmp;
+        }
+
+        // Merge the two arrays into temp
+        int i = 0, j = 0, k = 0;
+        while (i < m && j < n) {
+            if (nums1[i] < nums2[j]) {
+                temp[k++] = nums1[i++];
+            } else {
+                temp[k++] = nums2[j++];
+            }
+        }
+        while (i < m) {
+            temp[k++] = nums1[i++];
+        }
+        while (j < n) {
+            temp[k++] = nums2[j++];
+        }
+
+        System.out.println(Arrays.toString(temp));
+
+        int left = 0;
+        int right = m;
+        while (left <= right) {
+            int i1 = (left + right) / 2;
+            int j1 = (m + n + 1) / 2 - i1;
+            int maxLeftX = (i1 == 0) ? Integer.MIN_VALUE : temp[i1 - 1];
+            int minRightX = (i1 == m + n) ? Integer.MAX_VALUE : temp[i1];
+            if ((m + n) % 2 == 0) {
+                return (Math.max(maxLeftX, temp[j1 - 1]) + Math.min(minRightX, temp[j1])) / 2.0;
+            } else {
+                return (double) Math.max(maxLeftX, temp[j1 - 1]);
+            }
+        }
+        throw new RuntimeException("No median found");
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        int m = scanner.nextInt();
+        int[] nums1 = new int[m];
+        for (int i = 0; i < m; i++) {
+            nums1[i] = scanner.nextInt();
+        }
+        int n = scanner.nextInt();
+        int[] nums2 = new int[n];
+        for (int i = 0; i < n; i++) {
+            nums2[i] = scanner.nextInt();
+        }
+        Solution solution = new Solution();
+        double median = solution.findMedian(nums1, nums2);
+        System.out.println("Median: " + median);
+    }
+}

@@ -1,0 +1,39 @@
+
+     **
+    *  *
+  ******
+ *        *
+*          *
+
+import java.util.*;
+class Main {
+    public static void main(String[] args) {
+        // Note: Don't change class name
+        // your code goes here
+		Scanner sc= new Scanner(System.in);
+		int n = sc.nextInt();
+         int numStar=1;
+		for(int i=0;i<=n;i++){
+			for(int j=0;j<n-i;j++){
+				System.out.print(" ");
+			}
+			for(int j=0;j<numStar;j++){
+				System.out.print("*");
+			}
+			for(int j=n;j>n;j--){
+				System.out.print(" ");
+			}
+			for(int j=0;j<2*i;j++){
+				if(i == n/2){
+					System.out.print("*");
+				}else
+				System.out.print(" ");
+			}
+			for(int j=0;j<numStar;j++){
+				System.out.print("*");
+			}
+			
+			System.out.println();
+		}
+		
+	}}

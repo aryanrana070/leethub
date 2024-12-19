@@ -1,0 +1,45 @@
+// GrandParent class
+class GrandParent {
+    String name;
+
+    public GrandParent(String name) {
+        this.name = name;
+    }
+
+    public void printName() {
+        System.out.println("Name: " + name);
+    }
+}
+
+// Parent class inherits from GrandParent
+class Parent extends GrandParent {
+
+    public Parent(String name) {
+        super(name);
+    }
+}
+
+// Child class inherits from Parent
+class Child extends Parent {
+
+    public Child(String name) {
+        super(name);
+    }
+
+    @Override
+    public void printName() {
+        System.out.println("Child's Name override grand parent name: " + name);
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        // Creating an object using the GrandParent constructor
+        GrandParent grandParentObj = new GrandParent("Grand Parent");
+        grandParentObj.printName(); // Output will be: Name: Grand Parent
+
+        // Creating an object using the Child constructor
+        GrandParent childObj = new Child("Child");
+        childObj.printName(); // Output will be: Child's Name: Child
+    }
+}

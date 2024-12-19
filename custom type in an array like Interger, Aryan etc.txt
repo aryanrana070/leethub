@@ -1,0 +1,183 @@
+Here's the corrected and reorganized code for easier learning:
+
+Creating a Custom Type (Class) Called Aryan
+
+Basic Aryan Class
+
+
+// Define the Aryan class
+class Aryan {
+    String name;
+    int age;
+
+    // Constructor to initialize properties
+    public Aryan(String name, int age) {
+        this.name = name;
+        this.age = age;
+    }
+
+    // Method to display information
+    public void display() {
+        System.out.println("Name: " + name + ", Age: " + age);
+    }
+}
+
+// Main class to test the Aryan class
+public class Main {
+    public static void main(String[] args) {
+        // Create an instance of the Aryan class
+        Aryan aryan1 = new Aryan("Aryan", 25);
+
+        // Call method to display information
+        aryan1.display();
+        // Output: Name: Aryan, Age: 25
+    }
+}
+
+
+Sorting Aryan Objects Using a Custom Comparator
+
+
+// Import necessary libraries
+import java.util.Arrays;
+import java.util.Comparator;
+
+// Define the Aryan class
+class Aryan {
+    String name;
+    int age;
+
+    // Constructor to initialize properties
+    public Aryan(String name, int age) {
+        this.name = name;
+        this.age = age;
+    }
+
+    // Method to display information
+    public void display() {
+        System.out.println("Name: " + name + ", Age: " + age);
+    }
+}
+
+// Main class to test the Aryan class
+public class Main {
+    public static void main(String[] args) {
+        // Create an array of Aryan objects
+        Aryan[] aryans = new Aryan[] {
+            new Aryan("Aryan", 25),
+            new Aryan("Aryan Jr.", 22),
+            new Aryan("Aryan Sr.", 30)
+        };
+
+        // Sort the Aryan objects based on age using a custom comparator
+        Arrays.sort(aryans, new Comparator<Aryan>() {
+            @Override
+            public int compare(Aryan a1, Aryan a2) {
+                return Integer.compare(a1.age, a2.age); // Sorting by age
+            }
+        });
+
+        // Display the sorted array
+        for (Aryan aryan : aryans) {
+            aryan.display(); // Display each Aryan's name and age
+        }
+    }
+}
+
+
+Output:
+
+
+Name: Aryan Jr., Age: 22
+Name: Aryan, Age: 25
+Name: Aryan Sr., Age: 30
+
+
+Key Points
+
+1. Custom Type: You can create a custom class named Aryan (or anything you like).
+2. Custom Comparator: You can sort objects of your custom type using a custom comparator.
+3. Objects and Methods: You can define methods to operate on your custom class, such as constructors, getters, setters, and other logic.
+4. Naming Conventions: Follow Java's naming rules when creating custom types (classes).
+
+
+
+Here's the reorganized text with improved readability:
+
+Creating a Custom Type and Sorting by Index
+
+You want to create a custom type called Aryan, store instances of it in an array, and sort them based on a property (like age or name) using indices.
+
+Step-by-Step Code Using Custom Type Aryan
+
+
+import java.util.Arrays;
+
+class Aryan {
+    String name;
+    int age;
+
+    public Aryan(String name, int age) {
+        this.name = name;
+        this.age = age;
+    }
+
+    @Override
+    public String toString() {
+        return name + " (" + age + ")";
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        // Create an array of Aryan objects
+        Aryan[] aryans = new Aryan[] {
+            new Aryan("Aryan A", 30),
+            new Aryan("Aryan B", 22),
+            new Aryan("Aryan C", 25)
+        };
+
+        int n = aryans.length;
+
+        // Step 1: Create an array of indices (0 to n-1)
+        Integer[] indices = new Integer[n];
+        for (int i = 0; i < n; i++) {
+            indices[i] = i; // Initializing the indices array with values [0, 1, 2, ...]
+        }
+
+        // Step 2: Sort indices based on the 'age' property of the Aryan objects
+        Arrays.sort(indices, (c, d) -> Integer.compare(aryans[c].age, aryans[d].age));
+
+        // Step 3: Print the sorted Aryan objects based on sorted indices
+        System.out.println("Sorted Aryans based on age:");
+        for (int i = 0; i < n; i++) {
+            System.out.println(aryans[indices[i]]);
+        }
+    }
+}
+
+
+Explanation
+
+1. Aryan Class: The Aryan class has two properties: name and age. The toString() method is overridden to display name and age when printing the object.
+2. Step 1: Creating the Indices Array
+3. Step 2: Sorting the Indices
+4. Step 3: Printing the Sorted Aryans
+
+Output
+
+
+Sorted Aryans based on age:
+Aryan B (22)
+Aryan C (25)
+Aryan A (30)
+
+
+Key Points
+
+1. Custom Type Aryan: We created a class Aryan with properties like name and age.
+2. Sorting by Index: We sorted the Aryan objects using an array of indices, based on a property (age in this case).
+3. Comparator: We used a comparator to compare Aryan objects' properties (age).
+4. Reusability: You can use any custom type (like Aryan, Person, etc.) in a similar way.
+
+By following these steps and using indices to sort custom objects, you can efficiently sort and access objects based on their properties.

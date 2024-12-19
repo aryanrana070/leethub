@@ -1,0 +1,47 @@
+arr1 should be in a sorted way and each element of arr1 is adjusted so that the corresponding element of arr is a multiple of arr1.
+
+import java.util.Scanner;
+
+class Main {
+    static void display(int arr[], int n) {
+        for (int i = 0; i < n; i++) {
+            if (i == 0) {
+                System.out.print("[");
+            }
+            System.out.print(arr[i]);
+            if (i < n - 1) {
+                System.out.print(",");
+            } else {
+                System.out.print("]");
+            }
+        }
+        System.out.println();
+    }
+
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+
+        int n = sc.nextInt();
+        int arr[] = new int[n];
+        int arr1[] = new int[n];
+        for (int i = 0; i < n; i++) {
+            arr[i] = sc.nextInt();
+        }
+        // Initialize the first element of arr1
+        arr1[0] = arr[0];
+
+        // Populate the rest of arr1
+        for (int i = 1; i < n; i++) {
+            if (arr1[i - 1] <= arr[i]) {
+                arr1[i] = arr[i];
+            } else {
+                int remainder = arr1[i - 1] % arr[i];
+                int adjustment = arr[i] - remainder;
+                arr1[i] = arr1[i - 1] + adjustment;
+            }
+        }
+        
+        display(arr, n);
+        display(arr1, n);
+    }
+}

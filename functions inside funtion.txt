@@ -1,0 +1,109 @@
+Here's a Java program that defines two variables a and b in the main function and then uses these variables inside another function to call three different methods: add(), sub(), and a multiply() method called within the add() method.
+
+When you use a series of function calls where one function calls another, and that function may call yet another, this concept is generally referred to as "function chaining" or "function nesting". In the context of organizing functions and breaking down complex tasks into smaller, manageable pieces, it can also be part of a "modular design" or "functional decomposition".
+
+
+public class Main {
+    public static void main(String[] args) {
+        int a = 5;
+        int b = 3;
+        
+        // Call the performOperations method with a and b
+        performOperations(a, b);
+    }
+    
+    public static void performOperations(int a, int b) {
+        // Call add method
+        int sum = add(a, b);
+        System.out.println("Sum: " + sum);
+        
+        // Call sub method
+        int difference = sub(a, b);
+        System.out.println("Difference: " + difference);
+    }
+    
+    public static int add(int a, int b) {
+        // Add a and b
+        int result = a + b;
+        
+        // Call multiply method inside add
+        int product = multiply(a, b);
+        System.out.println("Product (from add method): " + product);
+        
+        return result;
+    }
+    
+    public static int sub(int a, int b) {
+        // Subtract b from a
+        return a - b;
+    }
+    
+    public static int multiply(int a, int b) {
+        // Multiply a and b
+        return a * b;
+    }
+}
+
+
+read this one again and again::::::::::::::::::::::::
+
+Method Calls:
+
+1> first case when ad call the equal method::
+System.out.print(ad.equals(ad1));: Calls the equals method on the ad object, passing ad1 as an argument.
+Inside the equals method, fst == a.fst compares ad.fst (which is 5) with ad1.fst (which is also 5), and snd == a.snd compares ad.snd (which is 10) with ad1.snd (which is also 10). Since both conditions are true, the method returns true.
+
+2> first case when ad1 call the equal method::
+System.out.print(ad1.equals(ad));: Calls the equals method on the ad1 object, passing ad as an argument.
+Inside the equals method, fst == a.fst compares ad1.fst (which is 5) with ad.fst (which is also 5), and snd == a.snd compares ad1.snd (which is 10) with ad.snd (which is also 10). Since both conditions are true, the method returns true.
+
+How the Current Object is Decided
+In Java, the this keyword refers to the current object—the instance of the class on which a method is invoked. When you call a method on an object, such as ad.equals(ad1), this inside the equals method refers to the ad object. The method is called on ad, making ad the current object.
+
+When you call ad.equals(ad1), the ad object is the current object (this), and ad1 is passed as the parameter a to the equals method. The method compares the fields of the current object (ad) with the fields of the passed object (ad1).
+
+Here's a step-by-step breakdown:
+
+ad.equals(ad1) is called.
+Inside the equals method, this refers to ad.
+a refers to ad1.
+The method compares this.fst (which is ad.fst) with a.fst (which is ad1.fst).
+Similarly, it compares this.snd (which is ad.snd) with a.snd (which is ad1.snd).
+
+
+If There Was Another Object with a Similar Name
+In Java, variable names are scoped within their respective blocks (e.g., methods, classes). If there are multiple objects with similar names, they are treated independently based on their scope. The method knows which object to compare based on the reference passed to it.
+
+
+ad: This is an object (instance) of the Add class.
+Add a: This is a parameter in the equals method of the Add class. It means the method takes another object of type Add as an argument for comparison.
+
+
+class Add{
+
+    int fst;
+    int snd;
+
+    boolean equals(Add a){
+        return fst == a.fst && snd == a.snd;
+    }
+
+}
+
+class Main {
+    public static void main(String[] args) {
+        // Note: Don't change class name
+        // your code goes here
+        Add ad = new Add();
+        ad.fst = 5;
+        ad.snd = 10;
+
+        Add ad1 = new Add();
+
+        ad1.fst = 5;
+        ad1.snd=10;
+
+        System.out.print(ad.equals(ad1));
+    }
+}
+

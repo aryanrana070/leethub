@@ -1,0 +1,91 @@
+// Demonstrating Inheritance and Polymorphism
+class Animal {
+    void sound() {
+        System.out.println("Animal makes a sound");
+    }
+}
+
+// Derived class
+class Dog extends Animal {
+    void sound() {
+        System.out.println("Dog barks");
+    }
+}
+
+// Derived class
+class Cat extends Animal {
+    void sound() {
+        System.out.println("Cat meows");
+    }
+}
+
+// Demonstrating Abstraction
+abstract class Ani {
+    // Abstract method (does not have a body)
+    abstract void makeSound();
+    
+    // Regular method
+    void sleep() {
+        System.out.println("This animal sleeps.");
+    }
+}
+
+// Subclass (inherited from Ani)
+class AniDog extends Ani {
+    void makeSound() {
+        System.out.println("AniDog barks");
+    }
+}
+
+// Demonstrating Encapsulation
+class EncapsulationExample {
+    // private variables
+    private String name;
+    private int age;
+
+    // public getter method for name
+    public String getName() {
+        return name;
+    }
+
+    // public setter method for name
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    // public getter method for age
+    public int getAge() {
+        return age;
+    }
+
+    // public setter method for age
+    public void setAge(int age) {
+        this.age = age;
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        // Polymorphism with Animal class
+        Animal myAnimal;
+        
+        myAnimal = new Dog();
+        myAnimal.sound();
+        
+        myAnimal = new Cat();
+        myAnimal.sound(); 
+
+        // Abstraction
+        Ani myAniDog = new AniDog();
+        myAniDog.makeSound(); 
+        myAniDog.sleep();   
+
+        // Encapsulation
+        EncapsulationExample myEncapsulatedObject = new EncapsulationExample();
+        myEncapsulatedObject.setName("Tom");
+        myEncapsulatedObject.setAge(5);
+        
+        System.out.println("Name: " + myEncapsulatedObject.getName());
+        System.out.println("Age: " + myEncapsulatedObject.getAge());
+    }
+}

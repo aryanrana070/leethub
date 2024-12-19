@@ -1,0 +1,172 @@
+converting 0 to 1 for max sub array having consecutive ones.
+converting only k zeros for example k=2 hoga to do zero swap krke 1 se max 1 ka sub array bnana hai
+
+code 1st with functions::
+
+import java.util.*;
+
+public class MaxConsecutiveOnes {
+    public static int findMaxConsecutiveOnes(int[] arr, int k) {
+        int windowStart = 0;
+        int maxOnes = 0;
+        int zeroSwaps = 0;
+
+        // Expanding the window with `windowEnd` pointer
+        for (int windowEnd = 0; windowEnd < arr.length; windowEnd++) {
+            if (arr[windowEnd] == 0) {
+                zeroSwaps++;  // Count the 0s in the window as swap candidates
+            }
+
+            // Contract the window if `zeroSwaps` exceeds `k`
+            while (zeroSwaps > k) {
+                if (arr[windowStart] == 0) {
+                    zeroSwaps--;  // Reduce the zeroSwaps count
+                }
+                windowStart++;  // Slide the window forward
+            }
+
+            // Calculate the maximum number of 1s in the current window size
+            maxOnes = Math.max(maxOnes, windowEnd - windowStart + 1);
+        }
+
+        return maxOnes;
+    }
+
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int n = sc.nextInt();
+        int[] arr = new int[n];
+        for (int i = 0; i < n; i++) {
+            arr[i] = sc.nextInt();
+        }
+        int k = sc.nextInt();
+
+        int maxConsecutiveOnes = findMaxConsecutiveOnes(arr, k);
+        System.out.println("Maximum number of consecutive 1s with up to " + k + " swaps: " + maxConsecutiveOnes);
+    }
+}
+
+
+code 2nd without funtion normal code::
+
+import java.util.*;
+
+public class MaxConsecutiveOnes {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        
+        // Input array size
+        int n = sc.nextInt();
+        
+        // Input array elements
+        int[] arr = new int[n];
+        for (int i = 0; i < n; i++) {
+            arr[i] = sc.nextInt();
+        }
+        
+        // Input number of swaps
+        int k = sc.nextInt();
+        
+        int windowStart = 0;
+        int maxOnes = 0;
+        int zeroSwaps = 0;
+        int[] swapIndices = new int[k];
+        int swapCount = 0;
+
+        
+        for (int windowEnd = 0; windowEnd < arr.length; windowEnd++) {
+            if (arr[windowEnd] == 0) {
+                zeroSwaps++;  // Count the 0s in the window as swap candidates
+            }
+
+            // Contract the window if `zeroSwaps` exceeds `k`
+            while (zeroSwaps > k) {
+                if (arr[windowStart] == 0) {
+                    zeroSwaps--;  // Reduce the zeroSwaps count
+                }
+                windowStart++;  // Slide the window forward
+            }
+
+            // Calculate the maximum number of 1s in the current window size
+            maxOnes = Math.max(maxOnes, windowEnd - windowStart+1);
+        }
+
+        // Print the maximum number of consecutive 1s
+        System.out.println("Maximum number of consecutive 1s with up to " + k + " swaps: " + maxOnes);
+        
+      }
+}
+
+
+
+code3 printing with array index and actual change of 0s to 1s in the final array::
+
+import java.util.*;
+
+public class MaxConsecutiveOnes {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        
+        // Input array size
+        int n = sc.nextInt();
+        
+        // Input array elements
+        int[] arr = new int[n];
+        for (int i = 0; i < n; i++) {
+            arr[i] = sc.nextInt();
+        }
+        
+        // Input number of swaps
+        int k = sc.nextInt();
+        
+        int windowStart = 0;
+        int maxOnes = 0;
+        int zeroSwaps = 0;
+        int[] swapIndices = new int[k];
+        int swapCount = 0;
+
+        
+        for (int windowEnd = 0; windowEnd < arr.length; windowEnd++) {
+            if (arr[windowEnd] == 0) {
+                zeroSwaps++;  // Count the 0s in the window as swap candidates
+            }
+
+            // Contract the window if `zeroSwaps` exceeds `k`
+            while (zeroSwaps > k) {
+                if (arr[windowStart] == 0) {
+                    zeroSwaps--;  // Reduce the zeroSwaps count
+                }
+                windowStart++;  // Slide the window forward
+            }
+
+            // Calculate the maximum number of 1s in the current window size
+            if (windowEnd - windowStart + 1 > maxOnes) {
+                maxOnes = windowEnd - windowStart + 1;
+                swapCount = 0;
+                for (int i = windowStart; i <= windowEnd && swapCount < k; i++) {
+                    if (arr[i] == 0) {
+                        swapIndices[swapCount++] = i;
+                    }
+                }
+            }
+        }
+
+        // Print the maximum number of consecutive 1s
+        System.out.println("Maximum number of consecutive 1s with up to " + k + " swaps: " + maxOnes);
+        
+        // Print the indices where 0s were swapped to 1s
+        System.out.print("Indices where 0s were swapped to 1s for maximum subarray: ");
+         System.out.print(Arrays.toString(swapIndices));
+         System.out.println();
+        // Actually change the zeros to ones in the array
+        for (int i = 0; i < swapCount; i++) {
+            arr[swapIndices[i]] = 1;
+        }
+        
+        // Print the modified array
+        System.out.println("Modified array: " + Arrays.toString(arr));
+    }
+}
+
+
+

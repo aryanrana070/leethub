@@ -1,0 +1,86 @@
+import java.util.Scanner;
+
+public class Solution {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        
+        // Input the size of the matrix
+        int n = sc.nextInt();
+        
+        // Arrays to store sums of primary and secondary diagonal lines
+        long sum[] = new long[2 * n - 1];
+        long diff[] = new long[2 * n - 1];
+        
+        // Fill the arrays with sums
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < n; j++) {
+                long a = sc.nextInt();
+                sum[i + j] += a;          // Sum for primary diagonal and its parallels
+                diff[i - j + n - 1] += a;  // Sum for secondary diagonal and its parallels
+            }
+        }
+        
+        // Find the maximum sum among all diagonals
+        long ans = Long.MIN_VALUE;
+        for (int s = 0; s < 2 * n - 1; s++) {
+            ans = Math.max(ans, sum[s]);  // Maximum in sum array
+            ans = Math.max(ans, diff[s]); // Maximum in diff array
+        }
+        
+        // Output the maximum diagonal sum
+        System.out.println(ans);
+    }
+}
+
+1 2 3 
+1 2
+1 2 3 4
+
+
+code for jagged array:
+import java.util.Scanner;
+
+public class Solution {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        
+        // Input the number of rows
+        int n = sc.nextInt();
+        
+        // Jagged array to store matrix
+        int[][] matrix = new int[n][];
+        
+        // Fill the jagged array
+        for (int i = 0; i < n; i++) {
+            int rowLength = sc.nextInt();  // Input the number of elements in this row
+            matrix[i] = new int[rowLength];
+            for (int j = 0; j < rowLength; j++) {
+                matrix[i][j] = sc.nextInt();
+            }
+        }
+        
+        // Arrays to store sums of primary and secondary diagonal lines
+        long sum[] = new long[2 * n - 1];
+        long diff[] = new long[2 * n - 1];
+        
+        // Fill the arrays with sums
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < matrix[i].length; j++) {
+                long a = matrix[i][j];
+                sum[i + j] += a;          // Sum for primary diagonal and its parallels
+                diff[i - j + n - 1] += a;  // Sum for secondary diagonal and its parallels
+            }
+        }
+        
+        // Find the maximum sum among all diagonals
+        long ans = Long.MIN_VALUE;
+        for (int s = 0; s < 2 * n - 1; s++) {
+            ans = Math.max(ans, sum[s]);  // Maximum in sum array
+            ans = Math.max(ans, diff[s]); // Maximum in diff array
+        }
+        
+        // Output the maximum diagonal sum
+        System.out.println(ans);
+    }
+}
+

@@ -1,0 +1,167 @@
+
+input yahi rkheo be: 5
+1 0 1 2 3 
+
+import java.util.*;
+class Main {
+    static void display(int arr[] , int n){
+		for(int i=0;i<n;i++){
+			if(i==0)
+			System.out.print("[");
+			System.out.print(arr[i]);
+			if(i<n-1){
+				System.out.print(",");
+			}else System.out.print("]");
+		}
+		System.out.println();
+	}
+
+	static int pushBack(int arr[],int val, int p){
+		if(p == arr.length)
+		return p;
+		arr[p] = val;
+		return p+1;
+	}
+	static int popBack(int arr[], int p){
+		if(p == 0)
+		return 0;
+		arr[p-1] = 0;
+		return p-1;
+	}
+    
+	static int pushFront(int arr[], int val, int k){
+		if(k == arr.length)
+             return k;
+			 int i=k-1;
+		while(i >=0){
+			arr[i+1] = arr[i];
+			i--;
+		}
+		arr[0] = val;
+		return k+1;
+	}
+
+	static int popFront(int arr[], int l){
+		if(l == 0)
+		return 0;
+        int i = 0;
+	while(i<l-1){
+			arr[i] = arr[i+1];
+			i++;
+		} 
+   arr[l-1] = 0;
+   
+		return l-1;
+	}
+
+	static int pushMid(int arr[],int val , int z){
+		if(z == arr.length)
+		return z;
+        int mid = z/2;
+		int i = z-1;
+		while(i>=mid){
+         arr[i+1]= arr[i];
+		 i--;
+		}
+		arr[mid] = val;
+		return z+1;
+	}
+
+	static int push(int arr[], int id, int val, int n){
+		if(n == arr.length)
+		return n;
+if(id < 0 || id > n)
+{ System.out.println("Index out of bound...");
+return n;}
+int i = n-1;
+while(i>=id){
+	arr[i+1] = arr[i];
+	i--;
+}
+arr[id] = val;
+return n+1;
+	}
+
+static int pop(int arr[], int id, int n){
+		if(n == 0)
+		return 0;
+if(id < 0 || id > n)
+{ System.out.println("Index out of bound...");
+return n;}
+int i = id;
+while(i<n-1){
+	arr[i] = arr[i+1];
+	i++;
+}
+
+return n-1;
+	}
+    public static void main(String[] args) {
+        // Note: Don't change class name
+        // your code goes here
+		Scanner sc = new Scanner(System.in);
+
+		int n = sc.nextInt();
+        int arr[] = new int[100];
+		for(int i=0;i<n;i++){
+			arr[i] = sc.nextInt();
+		}
+	System.out.println(Arrays.toString(arr));
+         display(arr,n);
+		n = pushBack(arr,5,n);
+		display(arr,n);
+        
+		System.out.println(n);
+		n= pushBack(arr,200,n);
+		display(arr,n);
+	System.out.println(Arrays.toString(arr));
+
+		n = popBack(arr,n);
+		display(arr,n);
+	System.out.println(Arrays.toString(arr));
+
+		n = pushFront(arr,3,n);
+		display(arr,n);
+
+		n = popFront(arr,n);
+		display(arr,n);
+
+		n = pushFront(arr,6,n);
+		display(arr,n);
+
+		n = popFront(arr,n);
+		display(arr,n);
+		n = popFront(arr,n);
+		display(arr,n);
+		n = popFront(arr,n);
+		display(arr,n);
+
+		n = pushMid(arr,10,n);
+		display(arr,n);
+
+		n = popFront(arr,n);
+		display(arr,n);
+		n = popFront(arr,n);
+		display(arr,n);
+		n = popFront(arr,n);
+		display(arr,n);
+		n = popFront(arr,n);
+		display(arr,n);
+		
+		n = push(arr,0,4,n);
+		display(arr,n);
+		
+		n = push(arr,2,6,n);
+		display(arr,n);
+
+		n = push(arr,0,3,n);
+		display(arr,n);
+		n = push(arr,0,2,n);
+		display(arr,n);
+		n = push(arr,0,1,n);
+		display(arr,n);
+		n = pop(arr,5,n);
+		display(arr,n);
+	
+	 }
+}

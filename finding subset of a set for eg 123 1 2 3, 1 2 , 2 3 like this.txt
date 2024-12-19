@@ -1,0 +1,19 @@
+public class ExponentialTime {
+    public static void generateSubsets(int[] arr, int index, String subset) {
+        if (index == arr.length) {
+            System.out.println("Subset: " + subset);
+            return;
+        }
+        
+        // Include the current element
+        generateSubsets(arr, index+1 , subset + arr[index] + " ");
+        
+        // Exclude the current element
+        generateSubsets(arr, index + 1, subset);
+    }
+
+    public static void main(String[] args) {
+        int[] array = {1, 2, 3};
+        generateSubsets(array, 0, "");
+    }
+}

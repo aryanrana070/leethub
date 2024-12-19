@@ -1,0 +1,76 @@
+max element count in a sequence for example : 1 4 5 5 5 3 3,, maxCount: 3 --- maxElement: 5
+
+
+import java.util.*;
+
+class Main {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);    
+        int n = sc.nextInt();         
+        int a[] = new int[n];  
+        
+        for(int i=0;i<n;i++){
+            a[i] = sc.nextInt();
+        }
+     
+     int maxCount = 1;
+     int currentCount = 1;
+     int maxElement  = a[0];
+
+    for(int i=1;i<n;i++){
+        if(a[i] == a[i-1]){
+            currentCount++;
+        }
+        else{
+            currentCount = 1;
+        }
+
+        if(currentCount>maxCount){
+            maxCount = currentCount;
+            maxElement = a[i];
+        }
+    }
+    System.out.println("maxCount: "+ maxCount);
+    System.out.println("maxElement: "+ maxElement); 
+    }
+}
+
+
+optimize way: O(n):
+
+
+import java.util.*;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int n = sc.nextInt();
+        int[] a = new int[n];
+
+        for (int i = 0; i < n; i++) {
+            a[i] = sc.nextInt();
+        }
+
+        System.out.println(Arrays.toString(a));
+
+        int count = 1;  // Initialize with 1 since the first element is part of the sequence.
+        int maxCount = 1;
+        int maxEle = 0;  // Initialize with 1 to handle cases with a single element array.
+
+        for (int i = 1; i < n; i++) {
+            if (a[i] == a[i - 1]) {
+                count++;
+                 maxEle=a[i];
+            } else {
+                count = 1; 
+                 maxEle=a[i]; // Reset the count when the sequence breaks.
+            }
+            maxCount = Math.max(maxCount, count); 
+            
+        }
+
+        System.out.println("Max count is: " + maxCount);
+        System.out.println(maxEle);
+
+    }
+}

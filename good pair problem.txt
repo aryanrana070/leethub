@@ -1,0 +1,112 @@
+You are given a Java program that counts the number of identical pairs in an array. The program takes an array of integers as input and calculates the count of "good pairs" in the array. A good pair is defined as a pair of indices (i, j) where nums[i] == nums[j] and i < j.
+
+import java.util.*;
+
+public class Main {
+    public static int numIdenticalPairs(int[] nums) {
+        int count = 0;
+        int[] freq = new int[101]; // assuming the range of numbers is from 0 to 100
+
+        // Count the frequency of each number in nums
+        for (int i = 0; i < nums.length; i++) {
+            freq[nums[i]]++;
+        }
+        System.out.println(Arrays.toString(freq));
+
+
+        // For each number, calculate the number of good pairs and print them
+        for (int i = 0; i < freq.length; i++) {
+            if (freq[i] > 1) {
+                int pairs = freq[i] * (freq[i] - 1) / 2;
+                count += pairs;
+                System.out.println("Good pairs with number " + i + ":");
+                for (int j = 0; j < nums.length; j++) {
+                    if (nums[j] == i) {
+                        for (int k = j + 1; k < nums.length; k++) {
+                            if (nums[k] == i) {
+                                System.out.println("(" + j + ", " + k + ")");
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        return count;
+    }
+
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+
+        // Input array size
+        int n = sc.nextInt();
+        int[] nums = new int[n];
+
+        // Input array elements
+        for (int i = 0; i < n; i++) {
+            nums[i] = sc.nextInt();
+        }
+
+        // Calculate and print the number of good pairs
+        System.out.println("Number of good pairs: " + numIdenticalPairs(nums));
+    }
+}
+
+===================================================
+
+with 2d array
+
+import java.util.*;
+
+public class Main {
+    public static int numIdenticalPairs(int[] nums) {
+        int count = 0;
+
+        // Array to store the indices of the elements forming good pairs
+        int[][] goodPairsIndices = new int[nums.length][2]; // Assuming maximum possible good pairs
+
+        // Index to keep track of the number of good pairs found
+        int goodPairsCount = 0;
+
+        // Loop through each pair of elements in the array
+        for (int i = 0; i < nums.length; i++) {
+            for (int j = i + 1; j < nums.length; j++) {
+                if (nums[i] == nums[j]) {
+                    // Increment count for good pair
+                    count++;
+                    // Store the indices of the elements forming the good pair
+                    goodPairsIndices[goodPairsCount][0] = i;
+                    goodPairsIndices[goodPairsCount][1] = j;
+                    goodPairsCount++;
+                }
+            }
+        }
+
+        // Print the indices of the elements forming the good pairs
+        System.out.println("Indices of elements forming good pairs:");
+        for (int k = 0; k < goodPairsCount; k++) {
+            System.out.println("(" + goodPairsIndices[k][0] + ", " + goodPairsIndices[k][1] + ")");
+        }
+
+        return count;
+    }
+
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+
+        // Input array size
+        System.out.print("Enter the size of the array: ");
+        int n = sc.nextInt();
+        int[] nums = new int[n];
+
+        // Input array elements
+        System.out.println("Enter the elements of the array:");
+        for (int i = 0; i < n; i++) {
+            nums[i] = sc.nextInt();
+        }
+
+        // Calculate and print the number of good pairs
+        System.out.println("Number of good pairs: " + numIdenticalPairs(nums));
+    }
+}
+

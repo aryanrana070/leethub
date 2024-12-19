@@ -1,0 +1,151 @@
+3 and 5 k multiples pe desired output print krega
+
+
+output:  AryanRana
+1
+2
+Aryan
+4
+Rana
+
+
+import java.util.*;
+
+public class MyClass {
+    public static void main(String args[]) {
+      
+Scanner sc = new Scanner(System.in);
+
+int N = sc.nextInt();
+for(int i = 1 ; i<=N;i++){
+     
+     if(i%3 == 0  && i%5 == 0)
+     {
+         System.out.println("AryanRana");
+     }else if(i%3 == 0){
+     
+         System.out.println("Aryan");
+     }else if(i%5 == 0){
+     
+        System.out.println("Rana")  ;
+     }
+     else System.out.println(i);
+     }
+     
+     sc.close();
+     
+     }
+}
+   
+    
+
+brake case in the same program: means 2N which is 30 when n is 15 so code 11 tk chlega 
+
+import java.util.*;
+
+public class MyClass {
+    public static void main(String args[]) {
+      
+Scanner sc = new Scanner(System.in);
+int sum =0;
+int N = sc.nextInt();
+for(int i = 1 ; i<=N;i++){
+     
+     if(i%3 == 0  && i%5 == 0)
+     {
+         System.out.println("AryanRana");
+     }else if(i%3 == 0){
+     
+         System.out.println("Aryan");
+     }else if(i%5 == 0){
+     
+        System.out.println("Rana")  ;
+     }
+     else {System.out.println(i);
+     
+     sum += i;
+     if(sum > 2*N)
+     break;
+     }
+     
+     sc.close();
+     
+     }
+}
+   
+}
+
+
+
+same program without using break , condition loop mei hi lga di:  i.e for eg (int i = 1 ;sum <=2*N && i<=N;i++)
+
+import java.util.*;
+public class MyClass {
+    public static void main(String args[]) {
+      
+Scanner sc = new Scanner(System.in);
+int sum =0;
+int N = sc.nextInt();
+for(int i = 1 ;sum <=2*N && i<=N;i++){
+     
+     if(i%3 == 0  && i%5 == 0)
+     {
+         System.out.println("AryanRana");
+     }else if(i%3 == 0){
+     
+         System.out.println("Aryan");
+     }else if(i%5 == 0){
+     
+        System.out.println("Rana")  ;
+     }
+     else {System.out.println(i);
+     
+     sum += i;
+     System.out.println("sum is : "+ sum);
+     }
+     
+     sc.close();
+     
+     }
+}
+}
+
+....
+same program with continue statement 
+continue stament apne neeche ki saari statment ko skip kr deti hai and loop runs again with incrment value
+ab continue k upr jo b hoga vo to print ho jayega but neeche ka sara skip 
+
+for eg when i%4==0 4 k multiple wali saari condtion skip kr dega ye code.
+import java.util.*;
+
+public class MyClass {
+    public static void main(String args[]) {
+      
+Scanner sc = new Scanner(System.in);
+int sum =0;
+int N = sc.nextInt();
+for(int i = 1 ;i<=N;i++){
+     if(i%4 == 0)
+     continue;
+     if(i%3 == 0  && i%5 == 0)
+     {
+         System.out.println("AryanRana");
+     }else if(i%3 == 0){
+     
+         System.out.println("Aryan");
+     }else if(i%5 == 0){
+     
+        System.out.println("Rana")  ;
+     }
+     else {System.out.println(i);
+     
+     sum += i;
+     
+     }
+     
+     sc.close();
+     
+     }
+}
+   
+}

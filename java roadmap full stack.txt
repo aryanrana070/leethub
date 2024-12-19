@@ -1,0 +1,11 @@
+Order of Learning:
+Start with the basics: HTML, CSS, JavaScript.
+Move to front-end frameworks: Focus on React.js.
+Learn version control: Git basics.
+Dive into back-end: Choose Spring Boot for Java or Node.js with Express.
+Learn databases: Start with SQL, then explore NoSQL.
+Understand API development: REST first, then optionally GraphQL.
+Explore DevOps and deployment: Learn basics of Docker and cloud platforms.
+Round out with additional skills: Testing, security, and basic server management.
+Summary:
+Focus on a balanced mix of front-end and back-end skills with a strong emphasis on modern frameworks like React.js for the front end and Spring Boot for Java on the back end. Learning in this order will provide a solid foundation to become an efficient Full Stack Developer in today’s tech landscape.

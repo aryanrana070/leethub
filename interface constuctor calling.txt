@@ -1,0 +1,31 @@
+interface:::
+Constructor Calling with Multiple Inheritance (Not Allowed in Java)
+
+Java does not support multiple inheritance with classes, meaning a class cannot have two parent classes. However, you can achieve similar behavior using interfaces.
+
+
+interface Interface1 {
+    default void show() {
+        System.out.println("Inside Interface1");
+    }
+}
+
+interface Interface2 {
+    default void show() {
+        System.out.println("Inside Interface2");
+    }
+}
+
+class Child implements Interface1, Interface2 {
+    public void show() {
+        Interface1.super.show(); // Calls show() from Interface1
+        Interface2.super.show(); // Calls show() from Interface2
+    }
+}
+
+class Main {
+    public static void main(String[] args) {
+        Child c = new Child();
+        c.show();
+    }
+}

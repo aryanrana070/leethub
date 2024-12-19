@@ -1,0 +1,41 @@
+
+
+public class MyClass {
+    static int x = 0;
+
+    static {
+        System.out.println("Static block 1");
+        x = 10;
+    }
+
+    {
+        System.out.println("Instance block 1");
+    }
+
+    public MyClass(int param) {
+        System.out.println("Constructor with parameter: " + param);
+    }
+
+    static {
+        System.out.println("Static block 2");
+        System.out.println("x = " + x);
+    }
+
+    {
+        System.out.println("Instance block 2");
+    }
+
+    public static int add(int a, int b) {
+        return a + b;
+    }
+
+    public int multiply(int a, int b) {
+        return a * b;
+    }
+
+    public static void main(String[] args) {
+        System.out.println("Add: " + MyClass.add(2, 3));
+        MyClass myClass = new MyClass(42); // Passing parameter to the constructor
+        System.out.println("Multiply: " + myClass.multiply(2, 3));
+    }
+}

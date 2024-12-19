@@ -1,0 +1,19 @@
+public class FactorialTime {
+    public static void generatePermutations(String str, String perm) {
+        if (str.length() == 0) {
+            System.out.println("Permutation: " + perm);
+            return;
+        }
+        
+        for (int i = 0; i < str.length(); i++) {
+            char curr = str.charAt(i);
+            String newStr = str.substring(0, i) + str.substring(i + 1);
+            generatePermutations(newStr, perm + curr);
+        }
+    }
+
+    public static void main(String[] args) {
+        String input = "ab";
+        generatePermutations(input, "");
+    }
+}

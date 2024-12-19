@@ -1,0 +1,25 @@
+class Pen{
+    String colour;
+    String type;
+public void write(){
+    System.out.print("\nwriting something");
+     
+}  
+public void printColour(){
+        System.out.print(this.colour+"\n");
+    }
+}
+public class MyClass {
+    public static void main(String args[]) {
+     Pen pen1 = new Pen();
+     pen1.type = "gel";
+     pen1.colour = "blue";
+     Pen pen2 = new Pen();
+     pen2.type = "ball pen";
+     pen2.colour = "black";
+     pen1.printColour(); 
+     pen2.printColour();
+     pen1.write();
+     
+    }
+}

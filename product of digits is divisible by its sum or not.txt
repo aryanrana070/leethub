@@ -1,0 +1,50 @@
+Given a positive integer n, consider a permutation of the numbers from 1 to n. Let's call the product of these numbers product and the sum of these numbers sum. Write a Java program that determines whether product is divisible by sum for a given number of test cases.
+
+import java.util.*;
+class Main {
+    public static void main(String[] args) {
+        // Note: Don't change class name
+        // your code goes here
+
+        Scanner sc = new Scanner(System.in);
+        int n = sc.nextInt();
+        int p = 1, s = 0;
+
+        // Calculate factorial (p) and sum (s) with breakdown
+        System.out.print("Factorial (p): " + n + "! = ");
+        for (int i = 1; i <= n; i++) {
+            p *= i;
+            s += i;
+
+            if (i > 1) {
+                System.out.print(" * ");
+            }
+            System.out.print(i);
+        }
+        System.out.println(" = " + p);
+
+        // Print the sum breakdown
+        System.out.print("Sum (s): ");
+        for (int i = 1; i <= n; i++) {
+            if (i > 1) {
+                System.out.print(" + ");
+            }
+            System.out.print(i);
+        }
+        System.out.println(" = " + s);
+
+        int sum = s;
+        while (s != 0) {
+            int temp = s;
+            s = p % s;
+            p = temp;
+        }
+
+        // Check if the GCD is equal to the sum
+        if (p == sum) {
+            System.out.print("Output: yes");
+        } else {
+            System.out.print("Output: no");
+        }
+    }
+}

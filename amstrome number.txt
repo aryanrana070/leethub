@@ -1,0 +1,56 @@
+For a given 3-digit number n, find whether it is an Armstrong number. 
+
+An Armstrong number of three digits is a number such that the sum of the cubes of its digits is equal to the number itself. Return "Yes" if it is an Armstrong number else return "No".
+NOTE: 371 is an Armstrong number since 33 + 73 + 13 = 371
+
+
+import java.util.*;
+class Main {
+    public static void main(String[] args) {
+        // Note: Don't change class name
+        // your code goes here
+
+		Scanner sc = new Scanner(System.in);
+		int n = sc.nextInt();
+        int sum= 0 , anst=0;
+
+		for(int i=n;i>0;i/=10){
+			
+               sum = i%10 ;
+			   sum *= sum*sum;
+			   anst += sum;
+		}
+
+       if(n == anst){
+		System.out.println("amstrome number as n= "+n+" is euqal to the sum of cube of its digits "+anst);
+	   }
+	   else System.out.println("not an amstrome number");
+    }
+}
+
+----------------------------------------------------------------
+with while:
+
+import java.util.*;
+class Main {
+    public static void main(String[] args) {
+        // Note: Don't change class name
+        // your code goes here
+
+		Scanner sc = new Scanner(System.in);
+		int n = sc.nextInt();
+		int originalNumber = n;
+        int sum= 0 , anst=0;
+while(n>0){
+	sum = n%10;
+	anst +=sum*sum*sum;
+	n/=10;
+}
+
+      if (originalNumber == anst) {
+            System.out.println("Armstrong number as " + originalNumber + " is equal to the sum of the cubes of its digits " + anst);
+        } else {
+            System.out.println("Not an Armstrong number");
+        }
+    }
+}

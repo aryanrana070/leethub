@@ -1,0 +1,44 @@
+To call a parameterized constructor of a superclass, you use super() with appropriate arguments.
+
+
+class Parent {
+    Parent(String name) {
+        System.out.println("Inside Parent constructor with name: " + name);
+    }
+}
+
+class Child extends Parent {
+    Child(String name) {
+        super(name); // Calls the parameterized constructor of Parent
+        System.out.println("Inside Child constructor with name: " + name);
+    }
+}
+
+class Main {
+    public static void main(String[] args) {
+        Child c = new Child("John");
+    }
+}
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+child and parent having different names.
+
+class Parent {
+    Parent(String parentName, int parentRoll) {
+        System.out.println("Inside Parent constructor with name: " + parentName + " " + parentRoll);
+    }
+}
+
+class Child extends Parent {
+    Child(String parentName, int parentRoll, String childName, int childRoll) {
+        super(parentName, parentRoll); // Calls the parameterized constructor of Parent
+        System.out.println("Inside Child constructor with name: " + childName + " " + childRoll);
+    }
+}
+
+class Main {
+    public static void main(String[] args) {
+        Child c = new Child("Michael", 100, "John", 45);
+    }
+}
+

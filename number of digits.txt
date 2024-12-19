@@ -1,0 +1,19 @@
+without initilizing the for loop printing number of digits in a number.
+
+import java.util.*;
+
+public class MyClass {
+    public static void main(String args[]) {
+      
+Scanner sc = new Scanner(System.in);
+int sum =0;
+int N = sc.nextInt();
+int count = 0 ;
+for(;N>0; N/=10){
+
+    count +=1;
+    
+}
+System.out.println(count);
+}
+}

@@ -1,0 +1,34 @@
+class Person{
+   String name; int age;
+   int first,snd;
+
+   Person(String name, int age){
+    this.name = name;
+    this.age = age;
+   }
+
+   void print(){
+    System.out.println("NAME: "+name);
+    System.out.println("AGE: "+age);
+   }
+
+    String display() {
+        // System.out.println(first + " ");
+        // System.out.println(snd);
+        return first + " " + snd;
+    }
+}
+
+class Main {
+    public static void main(String[] args) {
+        // Note: Don't change class name
+        // your code goes here
+        Person p = new Person("Aryan",24);
+        p.first = 10;
+        p.snd = 12;
+        p.print();
+        System.out.println("Returned String: " + p.display());
+        // p.display();
+        
+    }
+}

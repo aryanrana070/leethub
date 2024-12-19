@@ -1,0 +1,45 @@
+reverse a string using while loop
+
+
+import java.util.*;
+import java.lang.*;
+public class Main
+{
+	
+    public static void main(String args[]) {
+      String str;
+	Scanner scan=new Scanner(System.in);
+	System.out.print("Enter a string : ");
+	str=scan.nextLine();	
+	System.out.println("Reverse of a String '"+str+"' is  :"); 
+	int i=str.length();
+	while(i>0)
+	{
+	System.out.print(str.charAt(i-1)); 
+	i--;}
+     
+	}
+}
+
+
+
+
+
+
+using for loop
+
+import java.util.*;
+public class MyClass {
+    public static void main(String args[]) {
+    String str;
+	char ch;
+	Scanner sc=new Scanner(System.in);
+	System.out.print("Enter a string : ");
+	str=sc.nextLine();	
+	System.out.println("Reverse of a String '"+str+"' is  :"); 
+	for(int j=str.length();j>0;--j)
+	{
+	System.out.print(str.charAt(j-1)); 
+	}
+    }
+}

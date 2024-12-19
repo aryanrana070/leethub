@@ -1,0 +1,124 @@
+program to find the first and last index of an element
+
+
+import java.util.*;
+public class MyClass {
+    public static int First = -1;
+    public static int Last = -1;
+     public static int i= 0;
+
+    public static void FindOccurance(String str, int idx ,char element)
+ 
+    {
+        if(idx ==str.length() )
+       { System.out.println("First = "+First);
+       System.out.println("Last = "+Last);
+       
+       return ;}
+    
+   char  ch = str.charAt(idx);
+    
+   if(ch == element)
+   {if(First == -1)
+       { First = idx;}
+       else{Last = idx;}
+      
+   }
+    
+   FindOccurance(str,idx+1,element);
+    }
+    public static void main(String args[]) {
+    // Scanner sc= new Scanner(System.in);
+     String str = "abeeacdaefaah";
+  //   String reversed =  revString(str);
+    
+     
+ FindOccurance(str,0,'e');
+    }
+}}
+
+
+
+
+===================================================
+
+import java.util.*;
+public class MyClass {
+    public static int First = -1;
+    public static int Last = -1;
+     public static int i= 0;
+
+    public static void FindOccurance(String str, int idx ,char element)
+ 
+    {
+        if(idx ==str.length() )
+       { System.out.println("First = "+First);
+       System.out.println("Last = "+Last);
+       
+       return ;}
+    
+   char  ch = str.charAt(idx);
+    
+   if(ch == element)
+   {if(First == -1)
+       { First = idx;}
+       else{Last = idx;}
+      
+   }
+    
+   FindOccurance(str,idx+1,element);
+    }
+   
+    public static void main(String[] args) {
+        String str = "abeeaedafaehe";
+        char lastChar = str.charAt(str.length()-1); // Get the last character
+
+        for (int idx = 0; idx < str.length(); idx++) {
+            if (str.charAt(idx) == lastChar) {
+                System.out.println("Occurrence of '" + lastChar + "' at index " + idx);
+            }
+        }
+    }
+
+}
+printing all the values of last char.
+
+import java.util.*;
+public class MyClass {
+    public static int First = -1;
+    public static int Last = -1;
+     public static int i= 0;
+
+    public static void FindOccurance(String str, int idx ,char element)
+ 
+    {
+        if(idx ==str.length() )
+       { System.out.println("First = "+First);
+       System.out.println("Last = "+Last);
+       
+       return ;}
+    
+   char  ch = str.charAt(idx);
+    
+   if(ch == element)
+   {if(First == -1)
+       { First = idx;}
+       else{Last = idx;}
+      
+   }
+    
+   FindOccurance(str,idx+1,element);
+    }
+   
+    public static void main(String[] args) {
+        String str = "abeeaedafaehe";
+        char lastChar = str.charAt(str.length()-1); // Get the last character
+
+        for (int idx = 0; idx < str.length(); idx++) {
+            if (str.charAt(idx) == lastChar) {
+                System.out.println("Occurrence of '" + lastChar + "' at index " + idx);
+            }
+        }
+    }
+
+}

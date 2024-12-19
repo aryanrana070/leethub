@@ -1,0 +1,19 @@
+import java.util.*;
+class Main {
+    public static void main(String[] args) {
+        // Note: Don't change class name
+        // your code goes here
+
+		Scanner sc = new Scanner(System.in);
+		int a = sc.nextInt();
+		int b = sc.nextInt();
+		System.out.println(a);
+      
+		while(b!=0){
+			int temp = b;
+			b = a%b;
+			a = temp;
+		}
+		System.out.print(a);
+		}
+    }

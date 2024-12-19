@@ -1,0 +1,65 @@
+Here's an example of a Java code that calculates the sum of 5 random numbers using both normal and space-complexity optimized approaches:
+
+Normal Code
+
+import java.util.Random;
+
+public class Main {
+    public static void main(String[] args) {
+        Random rand = new Random();
+        int[] numbers = new int[5];
+        int sum = 0;
+
+        for (int i = 0; i < 5; i++) {
+            numbers[i] = rand.nextInt(100);
+            sum += numbers[i];
+        }
+
+        System.out.println("Sum: " + sum);
+    }
+}
+9711942106
+loansupport@hdfcbank.com.
+
+Space-Complexity Optimized Code
+
+import java.util.Random;
+
+public class Main {
+    public static void main(String[] args) {
+        Random rand = new Random();
+        int sum = 0;
+
+        for (int i = 0; i < 5; i++) {
+            sum += rand.nextInt(100);
+        }
+
+        System.out.println("Sum: " + sum);
+    }
+}
+
+
+Comparison
+
+In the normal code, we create an array numbers to store the 5 random numbers, which takes up additional space. In contrast, the space-complexity optimized code does not store the numbers in an array, instead, it directly adds the random numbers to the sum variable.
+
+Space Complexity
+
+- Normal Code: O(n) (where n is the number of random numbers)
+- Space-Complexity Optimized Code: O(1) (constant space complexity)
+
+Example
+
+Let's say we want to calculate the sum of 5 random numbers between 1 and 100.
+
+Normal Code:
+
+- Memory allocation: numbers array takes up 5 integers' worth of space (20 bytes on a 32-bit system)
+- Sum calculation: 1 + 2 + 3 + 4 + 5 = 15
+
+Space-Complexity Optimized Code:
+
+- Memory allocation: only 1 integer's worth of space for the sum variable (4 bytes on a 32-bit system)
+- Sum calculation: 1 + 2 + 3 + 4 + 5 = 15
+
+In this example, the space-complexity optimized code uses significantly less memory than the normal code, making it more efficient for large inputs.

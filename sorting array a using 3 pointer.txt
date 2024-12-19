@@ -1,0 +1,197 @@
+sorting array a using 3 pointer 
+where adding elements of array b in array a while sorting simultaniously.
+
+elements in a and b should be in sorted order for example a[1 3 4 5 6] and b=[1 2 3] it doest matter if if elements repeat but it should be in sortd order.
+
+import java.util.*;
+
+class Main {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        
+        int n = sc.nextInt();        
+     
+        int a[] = new int[7];  
+        int b[] = new int[3];  
+        
+        for (int i = 0; i < n; i++) {
+            a[i] = sc.nextInt(); 
+             b[i] = sc.nextInt(); 
+        }
+        
+        Arrays.sort(a, 0, n); 
+        System.out.println( Arrays.toString(a));
+
+        Arrays.sort(b, 0, n); 
+        System.out.println(Arrays.toString(b));
+        
+        System.out.println("Array a before merging: " + Arrays.toString(a));
+        System.out.println("Array b: " + Arrays.toString(b));
+
+        int i = n - 1; 
+        int j = n - 1; 
+        int k = 2 * n - 1; 
+        
+        while (i >= 0 && j >= 0) {
+            if (a[i] > b[j]) {
+                a[k] = a[i]; 
+                i--; 
+            } else {
+                a[k] = b[j]; 
+                j--; 
+            }
+            k--; 
+        }
+    
+        System.out.println("Array a after merging: " + Arrays.toString(a));
+    }
+}
+
+2nd way ===================================================
+import java.util.*;
+
+class Main {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int m = sc.nextInt();
+        int n = sc.nextInt();
+     
+        int a[] = new int[m+n];  
+        int b[] = new int[n];  
+        
+        for (int i = 0; i < m; i++) {
+            a[i] = sc.nextInt();  // Fill elements of a
+        }
+        
+        for (int i = 0; i < n; i++) {
+            b[i] = sc.nextInt();  // Fill elements of b
+            a[m + i] = b[i];      // Append b's elements to a
+        }
+        
+        Arrays.sort(a);  // Sort the combined array a
+        System.out.println(Arrays.toString(a));  
+    }
+}
+
+
+=========================================
+best way with  time complexity 0(n+m)--->
+
+import java.util.Arrays;
+import java.util.Scanner;
+
+class Main {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+
+       int m = sc.nextInt();
+       int n = sc.nextInt();
+        int[] a = new int[m+n]; 
+        int[] b = new int[n]; 
+
+    
+
+       for (int i = 0; i < m; i++) {
+            a[i] = sc.nextInt();
+        }
+       for (int i = 0; i < n; i++) {
+            b[i] = sc.nextInt();
+        }
+
+      
+        int i = m - 1;         // Pointer for the last initialized element in `a`
+        int j = n - 1;         // Pointer for the last element in `b`
+        int k = m + n - 1;     // Pointer for the end of merged array in `a`
+
+        while (i >= 0 && j >= 0) {
+            if (a[i] > b[j]) {
+                a[k--] = a[i--];  // Place the larger element from `a` or `b` at the end of `a`
+            } else {
+                a[k--] = b[j--];
+            }
+        }
+
+        // If any elements remain in `b`, move them to `a`
+        while (j >= 0) {
+            a[k--] = b[j--];
+        }
+
+        // Print the merged array
+        System.out.println("Merged array: " + Arrays.toString(a));
+    }
+}
+
+
+knowledge refrence wrt time complexity:
+
+code1:
+
+int[] a = new int[7];  
+int[] b = new int[3];  
+// Input and sort both arrays separately
+Arrays.sort(a, 0, n);  
+Arrays.sort(b, 0, n);  
+
+// Merge two sorted arrays from the end
+while (i >= 0 && j >= 0) {
+    if (a[i] > b[j]) a[k--] = a[i--];
+    else a[k--] = b[j--];
+}
+
+code2:
+
+int[] a = {1, 4, 6, 0, 0, 0, 0};  // a has extra space to accommodate b  
+int[] b = {2, 3, 5, 7};  
+while (i >= 0 && j >= 0) { 
+    if (a[i] > b[j]) a[k--] = a[i--];  
+    else a[k--] = b[j--];
+}
+// Copy remaining elements from b (if any)
+while (j >= 0) a[k--] = b[j--];
+
+
+code3:
+
+int[] a = new int[m + n];  
+int[] b = new int[n];  
+// Fill and append b to a
+for (int i = 0; i < n; i++) a[m + i] = b[i];  
+Arrays.sort(a);  // Sort the entire array
+
+
+code4:
+
+int[] result = new int[m + n];  
+while (i < m && j < n) {
+    if (a[i] < b[j]) result[k++] = a[i++];  
+    else result[k++] = b[j++];
+}
+// Copy remaining elements from a or b
+while (i < m) result[k++] = a[i++];
+while (j < n) result[k++] = b[j++];
+
+
+Conclusion
+Best Code: Code 2 (In-place merge)
+Ranking (Best to Worst):
+Code 2: O(m + n)
+Code 4: O(m + n)
+Code 1: O(n log n) + O(m + n)
+Code 3: O((m + n) log (m + n))
+
+Code 2 (In-place merge):
+Time Complexity: O(m + n)
+Reason: Uses existing space in a, no extra array allocation, only a single merge pass.
+
+Code 4 (Merge into a new result array):
+Time Complexity: O(m + n)
+Reason: Similar to Code 2, but requires extra space for the result array.
+
+Code 1 (Sorting two arrays + merging):
+Time Complexity: O(n log n) + O(m + n)
+Reason: Requires sorting two arrays before merging, which adds overhead.
+
+Code 3 (Sorting combined array):
+Time Complexity: O((m + n) log (m + n))
+Reason: Sorting the entire combined array is the most expensive operation.
+

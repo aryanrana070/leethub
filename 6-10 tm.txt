@@ -1,0 +1,21 @@
+not able to understand this part :
+Window: [1, 0, 1, 0, 1, 1, 1, 1, 1] (windowEnd = 11)
+
+zeroSwaps = 4
+Move windowStart until zeroSwaps <= k (now windowStart = 1)
+Max Ones = remains 11
+Window: [1, 0, 1, 1, 1, 1] (windowEnd = 12)
+
+zeroSwaps = 4
+Move windowStart until zeroSwaps <= k (now windowStart = 3)
+Max Ones = remains 11
+Window: [1, 1] (windowEnd = 13)
+
+zeroSwaps = 3
+Max Ones = 11 (0's present)
+Window: [1, 1] (windowEnd = 14)
+
+zeroSwaps = 3
+Max Ones = 11 (0's present)
+explain why it shift to right,if you explain with index number also then i will get it maybe.
+also explain which line is calcukating max number of 1s  and which is swaping 0 with example in detials

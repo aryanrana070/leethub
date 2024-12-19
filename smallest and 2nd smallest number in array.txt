@@ -1,0 +1,42 @@
+import java.util.*;
+
+public class Main{
+    
+    
+
+     public static void main(String[] args){
+        Scanner sc = new Scanner(System.in);
+
+        int n = sc.nextInt();
+        int nums[]= new int[n];
+
+        for(int i=0;i<nums.length;i++){
+            nums[i] = sc.nextInt();
+        } 
+
+        System.out.println(Arrays.toString(nums));
+
+      int smallest = Integer.MAX_VALUE;
+        int secondSmallest = Integer.MAX_VALUE;
+
+        for(int i=0;i<nums.length-1;i++){
+        
+            if(nums[i]< smallest){
+               secondSmallest  = smallest;
+               smallest = nums[i];
+            }
+            else if(nums[i] < secondSmallest && nums[i] != smallest){
+               secondSmallest = nums[i];
+               
+            }       
+
+        }
+           if(smallest == secondSmallest){
+                System.out.print("no 2nd smallest integer.");
+            } 
+            else
+                System.out.print("Smallest: "+smallest+", Second smallest: "+secondSmallest);
+
+        
+    }
+}

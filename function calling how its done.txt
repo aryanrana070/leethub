@@ -1,0 +1,132 @@
+Sure, let's break down the difference and explain why one works and the other doesn't.
+
+Understanding the Difference
+Example 1: Using sound() Method
+
+public class Main {
+    public static void main(String[] args) {
+        Animal a;
+
+        a = new Dog();
+        a.sound();  // Calls Dog's sound() method at runtime
+
+        a = new Cat();
+        a.sound();  // Calls Cat's sound() method at runtime
+    }
+}
+In this example:
+
+Animal is a superclass with a method sound(), which is overridden in Dog and Cat subclasses.
+a = new Dog(); assigns a Dog object to the reference a of type Animal.
+a.sound(); calls the sound() method on a. At runtime, the JVM determines that a is a Dog object and calls the Dog's sound() method.
+Similarly, a = new Cat(); assigns a Cat object to a, and a.sound(); calls the Cat's sound() method.
+Key Point: The sound() method is declared in the Animal class and overridden in the Dog and Cat subclasses. Thus, it is accessible through an Animal reference.
+
+Example 2: Using bark() Method
+java
+Copy code
+public class Main {
+    public static void main(String[] args) {
+        Animal a = new Dog();
+        a.eat(); // This will call the eat method from the Animal class.
+        // a.bark(); // This will result in a compile-time error because the reference type is Animal.
+        
+        // To call bark(), you would need to cast it to Dog
+        if (a instanceof Dog) {
+            ((Dog) a).bark(); // This will call the bark method from the Dog class.
+        }
+    }
+}
+In this example:
+
+Animal is a superclass with a method eat(), but it does not have a method bark().
+a = new Dog(); assigns a Dog object to the reference a of type Animal.
+a.eat(); calls the eat() method from the Animal class because eat() is defined in Animal.
+a.bark(); results in a compile-time error because bark() is not defined in Animal.
+Key Point: The bark() method is only defined in the Dog class, not in the Animal class. Therefore, you cannot call bark() directly on an Animal reference.
+
+Why the Difference?
+Method Availability: For a.sound() to work, the sound() method must be declared in the Animal class and overridden in the Dog and Cat classes. The Animal reference can then call sound(), and at runtime, the JVM will determine which version of sound() to execute based on the actual object type.
+Polymorphism: Polymorphism allows an Animal reference to point to objects of its subclasses (Dog and Cat). However, it only allows calling methods that are declared in the Animal class (like sound() in the first example).
+How to Access Subclass-Specific Methods?
+To access subclass-specific methods like bark(), you must:
+
+Cast the Reference: Check the actual object type at runtime and cast the reference to the appropriate subclass.
+Use instanceof Operator: Ensure type safety before casting.
+Example:
+
+java
+Copy code
+if (a instanceof Dog) {
+    ((Dog) a).bark(); // This will call the bark method from the Dog class.
+}
+Summary
+Compile-Time Polymorphism: The method to be called is determined at compile time based on the reference type (Animal), and only methods available in that type can be called.
+Runtime Polymorphism: The actual method to be executed is determined at runtime based on the object's type (Dog or Cat), but the method must be declared in the reference type (Animal).
+In summary, Animal a = new Dog(); a.sound(); works because sound() is declared in Animal and overridden in Dog. On the other hand, Animal a = new Dog(); a.bark(); does not work because bark() is not declared in Animal, and you must cast to Dog to access bark().
+
+
+
+
+
+
+
+
+fulll example where animal sound is called two time when dog and cat called seprately
+
+
+class Animal{
+    // Animal(){
+    //     System.out.println("Animal sound");
+
+    // }
+    void sound(){
+        System.out.println("Animal sound");
+    }
+}
+
+class Dog extends Animal{
+    //  Dog(){
+    //     System.out.println("dg sound");
+
+    // }
+    void bark(){
+        System.out.println("Dog sound");
+
+    }
+}
+
+class Cat extends Dog{
+    //  Cat(){
+    //     System.out.println("A sound");
+
+    // }
+    void sound(){
+        System.out.println("Cat sound");
+
+    }
+}
+
+
+public class Main {
+    public static void main(String[] args) {
+        Animal a;
+
+       a = new Dog();
+
+        a.sound();  // Calls Animal's sound() method at runtime
+
+    //a.bark(); result in error as bark method Dog class 
+    //mei defined hai and object a ka reference lia hai
+    //Animal se thats why a sound ko call b kr pa raha hai
+
+    Dog d = new Dog();
+    d.bark();
+
+    d.sound();//this can also called sound of animal 
+    //as animal se extend ho raha hai
+
+        a = new Cat();
+        a.sound();  // Calls Cat's sound() method at runtime
+    }
+}

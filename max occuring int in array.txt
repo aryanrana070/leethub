@@ -1,0 +1,40 @@
+this way which is n^2 complexity or sort the array then use a[i] = a[i+1] count++
+
+
+
+import java.util.*;
+
+public class Main{
+     public static void main(String[] args){
+        Scanner sc = new Scanner(System.in);
+
+        int n = sc.nextInt();
+        int nums[]= new int[n];
+
+        for(int i=0;i<nums.length;i++){
+            nums[i] = sc.nextInt();
+        } 
+        System.out.println(Arrays.toString(nums));
+
+        int maxCount = 0;
+        int maxElement = Integer.MAX_VALUE;
+
+        for (int i = 0; i < nums.length; i++) {
+            int count = 0;
+            for (int j = 0; j < nums.length; j++) {
+                if (nums[i] == nums[j]) {
+                    count++;
+                }
+            }
+
+            // Update maxElement and maxCount based on conditions
+            if (count > maxCount || (count == maxCount && nums[i] < maxElement)) {
+                maxCount = count;
+                maxElement = nums[i];
+            }
+        }
+
+        System.out.println("Element with maximum count: " + maxElement);
+        System.out.println("Count: " + maxCount);
+    }
+}

@@ -1,0 +1,106 @@
+Runtime Data Area
+The Runtime Data Area is a memory region managed by the JVM where data is stored during program execution. It's divided into several components, each with its specific purpose:
+
+Components of Runtime Data Area
+1. Heap
+Purpose: Stores instances of objects created by the program.
+Characteristics:
+Shared among all threads.
+Garbage collected to reclaim memory of unused objects.
+Size can be specified using JVM arguments (e.g., -Xmx).
+Example:
+
+Java
+public class Person {
+    String name;
+    int age;
+
+    public Person(String name, int age) {
+        this.name = name;
+        this.age = age;
+    }
+}
+
+public class Main {
+    public static void main(String[]   
+ args) {
+        Person person1 = new Person("Alice", 30);
+        Person person2 = new Person("Bob",   
+ 25);
+        // Objects person1 and person2 are stored in the heap.
+    }
+}
+Use code with caution.
+
+2. Method Area
+Purpose: Stores class-level data, such as:
+Runtime constant pool
+Field and method information
+Static variables
+Method bytecode
+Characteristics:
+Shared among all threads.
+Created when JVM starts and destroyed when JVM exits.
+Example:
+
+The class definitions for Person and Main are stored in the method area.
+The string constants "Alice" and "Bob" are stored in the runtime constant pool.
+3. Stack
+Purpose: Stores local variables, method parameters, and return values for each thread.
+Characteristics:
+Each thread has its own stack.
+Follows LIFO (Last In, First Out) order.
+Automatically managed by the JVM.
+Example:
+
+When the main method is called, a new stack frame is created for it.
+Local variables person1 and person2 are stored in this stack frame.
+When the main method returns, the stack frame is popped.
+4. PC Register (Program Counter Register)
+Purpose: Stores the address of the next instruction to be executed for each thread.
+Characteristics:
+Each thread has its own PC register.
+5. Native Method Stack
+Purpose: Stores information for native methods (methods implemented in languages other than Java).
+Characteristics:
+Specific to the underlying operating system.
+Garbage Collection
+Garbage Collection is the automatic process of reclaiming memory occupied by objects that are no longer in use. The JVM employs a garbage collector to identify and deallocate these objects.   
+
+Basic Process:
+
+Marking: The garbage collector identifies live objects (objects that are still being used).
+Sweeping: The garbage collector frees the memory occupied by dead objects (objects that are no longer referenced).
+Types of Garbage Collectors:
+
+Serial Collector
+Parallel Collector
+Concurrent Mark-Sweep (CMS) Collector
+G1 Garbage Collector (Garbage-First)
+Example:
+
+Java
+Person person1 = new Person("Alice", 30);
+// ... some code later
+person1 = null; // Object is no longer referenced
+Use code with caution.
+
+After this code, the object representing "Alice" becomes eligible for garbage collection. The garbage collector will eventually reclaim the memory used by this object.
+
+Native Method Interface (JNI)
+JNI is a programming framework that allows Java code to interact with code written in other languages, such as C or C++. It provides a bridge between the Java Virtual Machine and the native platform.
+
+Use Cases:
+
+Accessing platform-specific features (e.g., hardware, operating system APIs)
+Reusing existing C/C++ code
+Performance optimization for critical code sections
+Example:
+
+A Java application might use JNI to call a C library for image processing tasks.
+Key Points:
+
+JNI involves writing native code and creating a Java interface to interact with it.
+It's complex and can introduce performance overhead.
+Should be used carefully and only when necessary.
+By understanding these components, you can better grasp the memory management and execution process in Java applications.

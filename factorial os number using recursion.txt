@@ -1,0 +1,27 @@
+factorial of a number by user
+
+
+import java.util.*;
+public class Recursion{
+    public static void printFactorial(int i,int factorial)
+    {
+      if(i == 0)
+      {
+      System.out.println(factorial);
+      return;}
+      
+      factorial *=i;
+      
+      printFactorial(i-1, factorial);
+    }
+    public static void main(String args[])
+    
+    { 
+        System.out.print("ENTER THE NUMBER YOU THE THE FACTORIAL OF :  ");
+    Scanner sc = new Scanner(System.in);
+     int i = sc.nextInt();
+     int factorial=1;
+     printFactorial(i,factorial);
+    }
+    
+}

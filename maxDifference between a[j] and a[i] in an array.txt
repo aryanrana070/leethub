@@ -1,0 +1,36 @@
+max difference between 2 element across the array where a[j]> a[i]--> for example 1 2 0 10 15 3 
+so max difference will be 15 ass 15 - 0 is  15.
+example 2 --> 1 2 3 10 2 
+max difference is 10 -1 = 9.
+
+
+import java.util.*;
+
+class Main {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int n = sc.nextInt();
+        int a[] = new int[n];
+        for (int i = 0; i < n; i++) {
+            a[i] = sc.nextInt();
+        }
+        System.out.println("Array: " + Arrays.toString(a));
+
+        int minSoFar = a[0];  // Initialize minSoFar with the first element
+        int maxDiff = Integer.MIN_VALUE; // Initialize maxDiff to the smallest possible value
+
+        // Loop through the array starting from the second element
+        for (int j = 1; j < a.length; j++) {
+            // Calculate the difference between the current element and the min element seen so far
+            if (a[j] > minSoFar) {
+                maxDiff = Math.max(maxDiff, a[j] - minSoFar); // Update maxDiff
+            }
+
+            // Update minSoFar to be the minimum of itself and the current element
+            minSoFar = Math.min(minSoFar, a[j]);
+        }
+
+        // Print the result
+        System.out.println("Max difference: " + maxDiff);
+    }
+}

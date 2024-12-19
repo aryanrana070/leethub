@@ -1,0 +1,45 @@
+replace kr rhye hai right most biggest element ko left k sabhi chote element se
+[2,10,7,8,5]
+[10,8,8,5,-1]
+
+import java.util.Scanner;
+
+class Main {
+    static void display(int arr[], int n) {
+        for (int i = 0; i < n; i++) {
+            if (i == 0) {
+                System.out.print("[");
+            }
+            System.out.print(arr[i]);
+            if (i < n - 1) {
+                System.out.print(",");
+            } else {
+                System.out.print("]");
+            }
+        }
+        System.out.println();
+    }
+
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+
+        int n = sc.nextInt();
+        int arr[] = new int[n];
+        for (int i = 0; i < n; i++) {
+            arr[i] = sc.nextInt();
+        }
+        display(arr, n);
+
+        // Replace each element with the greatest element on its right
+        int maxFromRight = -1;
+        for (int i = n - 1; i >= 0; i--) {
+            int current = arr[i];
+            arr[i] = maxFromRight;
+            if (current > maxFromRight) {
+                maxFromRight = current;
+            }
+        }
+
+        display(arr, n);
+    }
+}

@@ -1,0 +1,47 @@
+class obj method............
+
+import java.util.*;
+class Animal{
+	String name;
+	String owner;
+	int kills;
+
+	String dislay(){
+		 return "Animal name: " + name + "\n" +"Animal owner: " + owner + "\n" +"Animal kills: " + kills;
+	}
+
+	void food(){
+		 System.out.println(name+" eats meat");
+	}
+
+	void baache(){
+		 System.out.println(name+" has 3 children");
+		 kills +=3;
+	}
+}
+class Main {
+    public static void main(String[] args) {
+   Animal aryan = new Animal();
+   aryan.name = "Tiger";
+   aryan.owner = "Aryan";
+   aryan.kills = 10;
+
+     System.out.println("Animal name: "+aryan.name);
+     System.out.println("Animal owner: "+aryan.owner);
+     System.out.println("Animal kills: "+aryan.kills);
+     System.out.println();
+
+     System.out.println("String display se print karwa dia ");
+	 
+     System.out.println(aryan.dislay());
+	 aryan.dislay();// this will not work as display method returns the vaule and we need to print it 
+	 aryan.food();
+	 aryan.baache();
+	   System.out.println("Kills after baache: " + aryan.kills);/// here kills increse from 10 to 13
+	 aryan.baache();
+	   System.out.println("Kills after baache: " + aryan.kills);/// here kills increse from 10 to 13
+
+
+
+    }
+}

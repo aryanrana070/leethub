@@ -1,0 +1,405 @@
+Example 1:
+
+Input: nums = [2,7,11,15], target = 9
+Output: [0,1]
+Explanation: Because nums[0] + nums[1] == 9, we return [0, 1].
+
+we can remove original array from these code a and b
+a>>>>>>>>>>> way 1---->.
+public class Solution {
+    public int[] twoSum(int[] nums, int target) {
+        int n = nums.length;
+        int a[] = new int[n];
+
+        for(int i=0;i<n;i++){
+            a[i] = i;
+        }
+
+        Integer b[] = new Integer[n];
+
+        for(int i=0;i<n; i++){
+            b[i]= i;
+             }
+        Arrays.sort(b, (c, d) -> Integer.compare(nums[c], nums[d]));
+        int left = 0;
+        int right = n - 1;
+        while (left < right) {
+            int sum = nums[b[left]] + nums[b[right]];
+            if (sum == target) {
+                return new int[] { b[left], b[right] };
+            } else if (sum < target) {
+                left++;
+            } else {
+                right--;
+            }
+        }
+        return new int[] {};
+    }
+}
+
+
+
+
+
+b>>>>>>> way 2-->>
+import java.util.*;
+
+public class TwoSum {
+
+    public static int[] twoSum(int[] nums, int target) {
+
+        // Step 1: Create an array of indices and values (pair each number with its original index)
+
+        int n = nums.length;
+        int[] originalIndices = new int[n];
+        
+        // Step 2: Populate the originalIndices array
+
+        for (int i = 0; i < n; i++) {
+            originalIndices[i] = i;
+        }
+        
+        System.out.println(Arrays.toString(originalIndices));
+
+        // Step 3: Sort the array based on the values
+
+        Integer[] sortedIndices = new Integer[n];
+        for (int i = 0; i < n; i++) {
+            sortedIndices[i] = i; // Initializing sorted indices
+        }
+        System.out.println(Arrays.toString(sortedIndices));
+        
+        // Sorting based on the values in nums array
+
+        Arrays.sort(sortedIndices, (a, b) -> Integer.compare(nums[a], nums[b]));
+        System.out.println(Arrays.toString(sortedIndices));
+
+        
+        // Step 4: Use two pointers to find the target sum
+
+        int left = 0, right = n - 1;
+        
+        while (left < right) {
+            int sum = nums[sortedIndices[left]] + nums[sortedIndices[right]];
+            
+            if (sum == target) {
+                return new int[] { sortedIndices[left], sortedIndices[right] };
+            } else if (sum < target) {
+                left++;
+            } else {
+                right--;
+            }
+        }
+        
+        // This line should never be reached since a solution is guaranteed
+
+        throw new IllegalArgumentException("No solution found");
+    }
+
+    public static void main(String[] args) {
+        int[] nums = {10, 1, 2, 15};
+        int target = 16;
+        
+        int[] result = twoSum(nums, target);
+        
+        // Output the result
+        System.out.println("Indices: [" + result[0] + ", " + result[1] + "]");
+    }
+}
+
+
+-----------------
+
+It looks like you're trying to return an array from the `main` method, which is not allowed in Java. The `main` method has a `void` return type, so it cannot return any value. Instead, you can print the result or handle it differently. Here's a modified version of your code that prints the indices of the elements that sum up to the target:
+
+```java
+import java.util.*;
+
+class Main {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int n = sc.nextInt();
+        int a[] = new int[n];
+
+        for (int i = 0; i < n; i++) {
+            a[i] = sc.nextInt();
+        }
+        System.out.println(Arrays.toString(a));
+
+        Integer b[] = new Integer[n];
+
+        for (int i = 0; i < n; i++) {
+            b[i] = i;
+        }
+        Arrays.sort(b, (c, d) -> Integer.compare(a[c], a[d]));
+        System.out.println(Arrays.toString(b));
+
+        int left = 0, right = n - 1;
+        int target = sc.nextInt();
+
+        while (left < right) {
+            int sum = a[b[left]] + a[b[right]];
+
+            if (sum == target) {
+                System.out.println("Indices: " + b[left] + ", " + b[right]);
+                return;
+            } else if (sum < target) {
+                left++;
+            } else {
+                right--;
+            }
+        }
+
+        System.out.println("No two elements sum up to the target.");
+    }
+}
+```
+
+This code will print the indices of the two elements that sum up to the target value. If no such elements are found, it will print a message indicating that. Let me know if you need any further assistance!
+
+========================================
+
+Here's the reorganized text, formatted for easier reading:
+
+Key Concepts
+Explanation of Arrays.sort(b, (c, d) -> Integer.compare(nums[c], nums[d]))
+In this line, you are sorting the array b based on the values in the nums array. Here's a breakdown of what c and d represent:
+
+b is an array of Integer objects that initially contains the indices of the nums array.
+Arrays.sort(b, (c, d) -> Integer.compare(nums[c], nums[d])) sorts the indices in b based on the values in nums.
+In the lambda expression (c, d) -> Integer.compare(nums[c], nums[d]):
+
+c and d are indices from the array b.
+nums[c] and nums[d] are the values in the nums array at the indices c and d, respectively.
+Integer.compare(nums[c], nums[d]) compares the values at these indices.
+Example
+Let's say nums is [4, 2, 5, 1]. Initially, b is [0, 1, 2, 3], representing the indices of nums.
+
+Before sorting:
+
+b = [0, 1, 2, 3]
+nums[b[0]] = 4
+nums[b[1]] = 2
+nums[b[2]] = 5
+nums[b[3]] = 1
+During sorting, the lambda expression compares the values:
+
+Compare nums[0] (4) and nums[1] (2): 4 > 2, so 1 comes before 0.
+Compare nums[1] (2) and nums[3] (1): 2 > 1, so 3 comes before 1.
+Continue this process for all pairs.
+After sorting:
+
+b = [3, 1, 0, 2]
+nums[b[0]] = 1
+nums[b[1]] = 2
+nums[b[2]] = 4
+nums[b[3]] = 5
+Now, b contains the indices of nums sorted by their corresponding values.
+
+1. int[]: Array of primitive int values
+2. Integer[]: Array of Integer objects (wrapper for primitive int values)
+3. Arrays.sort(): Sorts primitive arrays (like int[]) directly, but requires Integer[] for custom comparators
+
+Why Integer[] and Not int[] for Sorted Indices?
+
+When using a custom comparator, Integer[] is necessary because comparators work with objects (like Integer), not primitive types (like int).
+
+Example Code
+
+
+int[] nums = {10, 1, 2, 15};
+Integer[] sortedIndices = new Integer[nums.length];
+
+for (int i = 0; i < nums.length; i++) {
+    sortedIndices[i] = i; // Initialize sorted indices
+}
+
+Arrays.sort(sortedIndices, (a, b) -> Integer.compare(nums[a], nums[b]));
+
+
+Why int[] Doesn't Work
+
+1. Comparator requires Integer objects, not primitive int values.
+2. Integer.compare() takes two Integer values, not int values.
+
+Solution
+
+Use Integer[] instead of int[] to utilize the custom comparator.
+
+Errors with int[]
+
+1. "Cannot invoke compare(int, int) on the primitive type int"
+
+Sorting int[] Directly
+
+
+int[] nums = {10, 1, 2, 15};
+int[] sortedIndices = nums.clone();
+
+Arrays.sort(sortedIndices);
+
+
+Output
+
+Before sorting: [10, 1, 2, 15]
+After sorting: [1, 2, 10, 15]
+
+Note: This sorts the values themselves, not based on another array.
+
+Sorting Indices Based on nums[] Values
+
+1. Initialize an Integer[] array to store indices.
+2. Sort indices using a custom comparator that compares corresponding values in nums[].
+
+
+Integer[] sortedIndices = new Integer[nums.length];
+
+for (int i = 0; i < nums.length; i++) {
+    sortedIndices[i] = i; // Store indices
+}
+
+Arrays.sort(sortedIndices, (a, b) -> Integer.compare(nums[a], nums[b]));
+
+
+Output
+
+For nums = {10, 1, 2, 15}, sorted indices: [1, 2, 0, 3]
+
+Key Takeaways
+
+1. Use Integer[] for custom comparators, not int[].
+2. Sort indices to maintain original positions.
+3. Use Integer.compare() to compare corresponding values in another array.
+
+
+====>> Here's an in-depth comparison of int[] and Integer[] arrays in Java, including examples and use cases.
+
+Primitive Int Array (int[])
+
+Characteristics
+
+1. Stores primitive int values directly.
+2. Memory layout: contiguous block of memory containing int values.
+3. Null values are not allowed.
+4. Autoboxing/unboxing is not required.
+
+Example
+
+
+int[] primitiveArray = {10, 1, 4, 2, 15};
+
+
+Integer Object Array (Integer[])
+
+Characteristics
+
+1. Stores references to Integer objects.
+2. Memory layout: array of pointers to Integer objects.
+3. Null values are allowed.
+4. Autoboxing/unboxing is required.
+
+Example
+
+
+Integer[] objectArray = {10, 1, 4, 2, 15};
+
+
+Comparison and Use Cases
+
+1. Sorting
+
+Both arrays can be sorted using Arrays.sort().
+
+
+int[] primitiveArray = {10, 1, 4, 2, 15};
+Integer[] objectArray = {10, 1, 4, 2, 15};
+
+Arrays.sort(primitiveArray);
+Arrays.sort(objectArray);
+
+System.out.println(Arrays.toString(primitiveArray)); // [1, 2, 4, 10, 15]
+System.out.println(Arrays.toString(objectArray)); // [1, 2, 4, 10, 15]
+
+
+2. Printing
+
+Both arrays can be printed using Arrays.toString().
+
+
+int[] primitiveArray = {10, 1, 4, 2, 15};
+Integer[] objectArray = {10, 1, 4, 2, 15};
+
+System.out.println(Arrays.toString(primitiveArray)); // [10, 1, 4, 2, 15]
+System.out.println(Arrays.toString(objectArray)); // [10, 1, 4, 2, 15]
+
+
+3. Null Values
+
+Integer[] allows null values, while int[] does not.
+
+
+Integer[] objectArray = {10, null, 4, 2, 15};
+// int[] primitiveArray = {10, null, 4, 2, 15}; // compiler error!
+
+
+4. Autoboxing/Unboxing
+
+Integer[] requires autoboxing/unboxing, which can lead to performance issues.
+
+
+Integer[] objectArray = {10, 1, 4, 2, 15};
+int sum = 0;
+for (Integer value : objectArray) {
+    sum += value; // autoboxing/unboxing occurs here
+}
+
+
+5. Memory Usage
+
+int[] typically uses less memory than Integer[] due to the overhead of object references.
+
+
+int[] primitiveArray = {10, 1, 4, 2, 15};
+Integer[] objectArray = {10, 1, 4, 2, 15};
+
+System.out.println("Primitive array size: " + primitiveArray.length * 4 + " bytes");
+System.out.println("Object array size: " + objectArray.length * 8 + " bytes");
+
+
+6. Performance
+
+int[] is generally faster than Integer[] due to the absence of autoboxing/unboxing.
+
+
+int[] primitiveArray = {10, 1, 4, 2, 15};
+Integer[] objectArray = {10, 1, 4, 2, 15};
+
+long startTime = System.nanoTime();
+for (int i = 0; i < 1000000; i++) {
+    int sum = 0;
+    for (int value : primitiveArray) {
+        sum += value;
+    }
+}
+long endTime = System.nanoTime();
+System.out.println("Primitive array time: " + (endTime - startTime) + " ns");
+
+startTime = System.nanoTime();
+for (int i = 0; i < 1000000; i++) {
+    int sum = 0;
+    for (Integer value : objectArray) {
+        sum += value;
+    }
+}
+endTime = System.nanoTime();
+System.out.println("Object array time: " + (endTime - startTime) + " ns");
+
+
+Conclusion
+
+1. Use int[] for performance-critical code, large datasets, or when memory usage is a concern.
+2. Use Integer[] when you need to store null values or work with object-oriented code.
+3. Be aware of the autoboxing/unboxing overhead when using Integer[].
+4. Consider using int[] for sorting and printing operations due to its performance advantages.
+
+Keep in mind that Java's autoboxing/unboxing feature can sometimes obscure the distinction between int and Integer. However, understanding the differences is

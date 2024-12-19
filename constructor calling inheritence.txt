@@ -1,0 +1,25 @@
+Constructor inheritance i.e constructor keise call hote hai inside sub clasess--->>>>>> for eg grand parent -> parent -> child.
+
+class Grandfather {
+    Grandfather() {
+        System.out.println("Inside Grandfather constructor");
+    }
+}
+
+class Parent extends Grandfather {
+    Parent() {
+        System.out.println("Inside Parent constructor");
+    }
+}
+
+class Child extends Parent {
+    Child() {
+        System.out.println("Inside Child constructor");
+    }
+}
+
+class Main {
+    public static void main(String[] args) {
+        Child c = new Child();
+    }
+}

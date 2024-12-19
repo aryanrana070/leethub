@@ -1,0 +1,71 @@
+
+
+Implement a Java application to find all numbers within a specified range [start, end] whose digit sum is a perfect square. 
+------------------------------------------------------------
+import java.util.*;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+
+        int n = sc.nextInt();
+        int k = sc.nextInt();
+        int cnt = n;
+
+        while (cnt <= k) {
+            int sum = 0;
+             int num = cnt;
+            // Calculate digit sum of cnt using a while loop
+            for (int i = num; i > 0; i /= 10) {
+                sum += i % 10;
+            }
+
+            // Check if digit sum is a perfect square
+            int sqrt = (int) Math.sqrt(sum);
+            if (sqrt * sqrt == sum) {
+                System.out.println(cnt);
+            }
+            
+            cnt++; // Increment cnt outside the for loop
+        }
+    }
+}
+
+
+
+------------------------------------------------------------------------------------------------------------------
+same code using both while loop
+import java.util.*;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+
+        int n = sc.nextInt();
+        int k = sc.nextInt();
+        int cnt = n;
+
+        while (cnt <= k) {
+            int sum = 0;
+            int num = cnt; // Initialize num with cnt for each iteration
+
+            // Calculate digit sum of num
+            while (num > 0) {
+                sum += num % 10;
+                num /= 10;
+            }
+
+            // Check if digit sum is perfect square and number is within range
+            if (isPerfectSquare(sum)) {
+                System.out.println(cnt);
+            }
+
+            cnt++;
+        }
+    }
+
+    private static boolean isPerfectSquare(int num) {
+        int sqrt = (int) Math.sqrt(num);
+        return sqrt * sqrt == num;
+    }
+}

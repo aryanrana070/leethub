@@ -1,0 +1,67 @@
+fibonacci
+
+import java.util.*;
+public class Recursion{
+    public static void printFib(int a,int b ,int n)
+    {
+      if(n == 0)
+      {
+      
+      return;}
+      
+    int c = b+a;
+    System.out.println(c);
+      
+      printFib(b, c, n-1);
+    }
+    public static void main(String args[])
+    
+    { 
+        System.out.print("ENTER THE length of THE FIBONACCI series :  ");
+    Scanner sc = new Scanner(System.in);
+     int n = sc.nextInt();
+     int b=1; int a=0;
+     System.out.println(a);
+       System.out.println(b);
+     printFib(a,b,n-1);
+    }
+    
+}
+
+
+////////////////////////////////////// explicitly show the values of a, b, and c at each iteration. //////////////////////////////////////////////////////////
+
+import java.util.Scanner;
+
+public class Main {
+
+    public static void main(String[] args) { 
+        Scanner scanner = new Scanner(System.in);
+
+        // Input number of terms from the user
+        System.out.print("Enter the number of Fibonacci terms: ");
+        int terms = scanner.nextInt();
+
+        // Initialize variables
+        int a = 0;
+        int b = 1;
+        int c = 0; // Initially set to 0 for this variation
+
+        System.out.println("Fibonacci terms till " + terms + ":");
+
+        // Iterate through n terms
+        for (int i = 1; i <= terms; i++) {
+
+            // Print current values of a, b, and c
+            System.out.println("Iteration " + i + ":");
+            System.out.println("  a: " + a);
+            System.out.println("  b: " + b);
+            System.out.println("  c: " + c);
+
+            // Update variables for the next term
+            a = b;
+            b = c;
+            c = a + b;
+        }
+    }
+}

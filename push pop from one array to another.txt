@@ -1,0 +1,345 @@
+removing element from an array and adding in another with same size
+
+normal removing with writing n-- everytime to decrease size of arr[];
+
+
+import java.util.Scanner;
+
+class Main {
+    static void display(int arr[], int n) {
+        for (int i = 0; i < n; i++) {
+            if (i == 0) {
+                System.out.print("[");
+            }
+            System.out.print(arr[i]);
+            if (i < n - 1) {
+                System.out.print(",");
+            } else {
+                System.out.print("]");
+            }
+        }
+        System.out.println();
+    }
+
+    static int pop(int arr[], int idx, int n) {
+        if (n == 0)
+            return 0;
+        if (idx < 0 || idx >= n) {
+            System.out.println("Index out of bounds...");
+            return n;
+        }
+
+        int removedElement = arr[idx];
+        for (int i = idx; i < n - 1; i++) {
+            arr[i] = arr[i + 1];
+        }
+        arr[n - 1] = 0; // Reset the last element
+
+          return n - 1;
+    }
+
+    static int push(int arr1[], int val, int m) {
+        if (m == arr1.length)
+            return m;
+        
+        for (int i = m; i > 0; i--) {
+            arr1[i] = arr1[i - 1];
+        }
+        arr1[0] = val;
+
+        return m + 1;
+    }
+
+    public static void main(String[] args) {
+        // Note: Don't change class name
+        // your code goes here
+        Scanner sc = new Scanner(System.in);
+
+        int n = sc.nextInt();
+        int arr[] = new int[n];
+        int arr1[] = new int[n];
+        for (int i = 0; i < n; i++) {
+            arr[i] = sc.nextInt();
+        }
+        display(arr, n);
+
+        int removedElement = pop(arr, 2, n);
+        display(arr, n);
+
+        int m = push(arr1, removedElement, 0); // Initially arr1 is empty, so size is 0
+        display(arr1, m);
+
+        removedElement = pop(arr, 1, n);
+        n--; // Decrease the size of arr after pop
+        display(arr, n);
+
+        m = push(arr1, removedElement, m); // Now we use the current size of arr1
+        display(arr1, m);
+
+        removedElement = pop(arr, 0, n);
+        display(arr, n);
+
+        m = push(arr1, removedElement, m); 
+        display(arr1, m);
+    }
+}
+
+-------------------------main real code ----------------------------again same code but this time creating returnElement array so that return updated array size-------------------
+
+import java.util.*;
+
+class Main {
+    static void display(int arr[], int n) {
+        for (int i = 0; i < n; i++) {
+            if (i == 0) {
+                System.out.print("[");
+            }
+            System.out.print(arr[i]);
+            if (i < n - 1) {
+                System.out.print(",");
+            } else {
+                System.out.print("]");
+            }
+        }
+        System.out.println();
+    }
+
+    static int pop(int arr[], int idx, int n, int[] removedElement) {
+        if (n == 0)
+            return n;
+        if (idx < 0 || idx >= n) {
+            System.out.println("Index out of bounds...");
+            return n;
+        }
+        removedElement[0] = arr[idx];
+        for (int i = idx; i < n - 1; i++) {
+            arr[i] = arr[i + 1];
+        }
+        arr[n - 1] = 0; // Reset the last element
+        return n - 1; // Return the new size of the array
+    }
+
+    static int push(int arr1[], int val, int m) {
+        if (m == arr1.length)
+            return m;
+        for (int i = m; i > 0; i--) {
+            arr1[i] = arr1[i - 1];
+        }
+        arr1[0] = val;
+        return m + 1; // Return the new size of arr1
+    }
+
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+
+        int n = sc.nextInt();
+        int arr[] = new int[n];
+        int arr1[] = new int[n];
+        for (int i = 0; i < n; i++) {
+            arr[i] = sc.nextInt();
+        }
+        display(arr, n);
+        System.out.println(Arrays.toString(arr1));
+
+        int[] removedElement = new int[1];
+
+        n = pop(arr, 2, n, removedElement);
+        display(arr, n);
+
+        int m = 0; // Initialize m to 0 to reflect that arr1 is initially empty
+        m = push(arr1, removedElement[0], m);
+        display(arr1, m);
+
+        n = pop(arr, 1, n, removedElement);
+        display(arr, n);
+
+        m = push(arr1, removedElement[0], m);
+        display(arr1, m);
+    }
+}
+
+
+---------------- index out of bound case where push print kr raha tha previous wale------------------------------------------------------
+
+import java.util.Scanner;
+
+class Main {
+    static void display(int arr[], int n) {
+        for (int i = 0; i < n; i++) {
+            if (i == 0) {
+                System.out.print("[");
+            }
+            System.out.print(arr[i]);
+            if (i < n - 1) {
+                System.out.print(",");
+            } else {
+                System.out.print("]");
+            }
+        }
+        System.out.println();
+    }
+
+    static int pop(int arr[], int idx, int n, int[] removeElement) {
+        if (n == 0)
+            return n;
+        if (idx >= n || idx < 0) {
+            System.out.println("INDEX OUT OF BOUND");
+            removeElement[0] = Integer.MIN_VALUE; // Use a sentinel value to indicate error
+            return n;
+        }
+        int i = idx;
+        removeElement[0] = arr[idx];
+        while (i < n - 1) {
+            arr[i] = arr[i + 1];
+            i++;
+        }
+        arr[n - 1] = 0;
+        return n - 1;
+    }
+
+    static int push(int arr1[], int val, int m) {
+        if (m == arr1.length) {
+            return m;
+        }
+        for (int i = m - 1; i >= 0; i--) {
+            arr1[i + 1] = arr1[i];
+        }
+        arr1[0] = val;
+        return m + 1;
+    }
+
+    static int[] popAndPush(int arr[], int idx, int n, int arr1[], int m) {
+        int[] removeElement = new int[1];
+        n = pop(arr, idx, n, removeElement);
+        if (removeElement[0] != Integer.MIN_VALUE) { // Check if pop was successful
+            m = push(arr1, removeElement[0], m);
+        }
+        return new int[]{n, m};
+    }
+
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+
+        int n = sc.nextInt();
+        int arr[] = new int[n];
+        int arr1[] = new int[n];
+        for (int i = 0; i < n; i++) {
+            arr[i] = sc.nextInt();
+        }
+        display(arr, n);
+
+        int m = 0;
+        int[] result;
+
+        result = popAndPush(arr, 1, n, arr1, m);
+        n = result[0];
+        m = result[1];
+        display(arr, n);
+        display(arr1, m);
+
+        result = popAndPush(arr, 1, n, arr1, m);
+        n = result[0];
+        m = result[1];
+        display(arr, n);
+        display(arr1, m);
+
+        result = popAndPush(arr, 1, n, arr1, m);
+        n = result[0];
+        m = result[1];
+        display(arr, n);
+        display(arr1, m);
+
+        result = popAndPush(arr, 4, n, arr1, m);
+        n = result[0];
+        m = result[1];
+        display(arr, n);
+        display(arr1, m);
+    }
+}
+
+
+
+with classs---------------------->>>>>>>>>
+import java.util.*;
+
+class Main {
+    static void display(int arr[], int n) {
+        for (int i = 0; i < n; i++) {
+            if (i == 0) {
+                System.out.print("[");
+            }
+            System.out.print(arr[i]);
+            if (i < n - 1) {
+                System.out.print(",");
+            } else {
+                System.out.print("]");
+            }
+        }
+        System.out.println();
+    }
+
+    static class PopResult {
+        int removedElement;
+        int newSize;
+
+        PopResult(int removedElement, int newSize) {
+            this.removedElement = removedElement;
+            this.newSize = newSize;
+        }
+    }
+
+    static PopResult pop(int arr[], int idx, int n) {
+        if (n == 0) {
+            return new PopResult(0, n);
+        }
+        if (idx < 0 || idx >= n) {
+            System.out.println("Index out of bounds...");
+            return new PopResult(0, n);
+        }
+        int returnElement = arr[idx];
+        for (int i = idx; i < n - 1; i++) {
+            arr[i] = arr[i + 1];
+        }
+        arr[n - 1] = 0;
+        return new PopResult(returnElement, n - 1);
+    }
+
+    static int push(int arr1[], int val, int m) {
+        if (m == arr1.length) {
+            return m;
+        }
+        for (int i = m; i > 0; i--) {
+            arr1[i] = arr1[i - 1];
+        }
+        arr1[0] = val;
+        return m + 1; // Return the new size of arr1
+    }
+
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+
+        int n = sc.nextInt();
+        int arr[] = new int[n];
+        int arr1[] = new int[n];
+        for (int i = 0; i < n; i++) {
+            arr[i] = sc.nextInt();
+        }
+        display(arr, n);
+        System.out.println(Arrays.toString(arr1));
+
+        PopResult popResult = pop(arr, 2, n);
+        n = popResult.newSize;
+        display(arr, n);
+
+        int m = 0; // Initialize m to 0 to reflect that arr1 is initially empty
+        m = push(arr1, popResult.removedElement, m);
+        display(arr1, m);
+
+        popResult = pop(arr, 1, n);
+        n = popResult.newSize;
+        display(arr, n);
+
+        m = push(arr1, popResult.removedElement, m);
+        display(arr1, m);
+    }
+}
